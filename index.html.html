@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Rose ✨</title>
+    <style>
+        :root {
+            --bright-red: #ff0040;
+            --gold: #ffcc00;
+            --white: #ffffff;
+        }
+
+        body, html {
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            background: radial-gradient(circle, #3d010b, #000000); 
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden; color: var(--white);
+        }
+
+        .page {
+            position: absolute; width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; opacity: 0; visibility: hidden;
+            transition: all 0.7s ease-in-out;
+            z-index: 1;
+        }
+
+        .active { opacity: 1; visibility: visible; z-index: 10; }
+
+        /* Page 1: Glowing Beating Heart */
+        .heart-container {
+            cursor: pointer; z-index: 20; padding: 30px;
+        }
+
+        .heart {
+            font-size: 140px; 
+            filter: drop-shadow(0 0 40px var(--bright-red)); 
+            animation: beat 0.8s infinite alternate;
+        }
+
+        @keyframes beat {
+            to { transform: scale(1.15); filter: drop-shadow(0 0 70px var(--bright-red)); }
+        }
+
+        /* Typography & Brightening */
+        h1 { 
+            color: var(--gold); 
+            font-size: 3.5em; 
+            margin: 10px; 
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+
+        .shayeri {
+            font-size: 1.6em; 
+            line-height: 1.8; 
+            max-width: 80%;
+            color: var(--white); 
+            font-weight: 600;
+            margin: 25px 0;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            background: linear-gradient(to right, #ffcc00, #ffaa00);
+            color: #000; border: none;
+            padding: 18px 50px; border-radius: 50px; 
+            cursor: pointer; font-size: 1.3em; font-weight: 800;
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+            transition: 0.3s;
+        }
+
+        .btn:hover { transform: scale(1.1); filter: brightness(1.2); }
+
+        /* Animated Elements */
+        .floating-emoji {
+            font-size: 50px; margin-bottom: 10px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .petal {
+            position: absolute; top: -50px; pointer-events: none;
+            z-index: 100; animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page active" id="p1">
+        <div class="heart-container" onclick="nextPage(2)">
+            <div class="heart">💝</div> </div>
+        <h1>ROSE</h1>
+        <p style="font-size: 1.3em; color: var(--gold); letter-spacing: 2px;">Tap to unlock magic ✨</p>
+    </div>
+
+    <div class="page" id="p2">
+        <div class="floating-emoji">🌟</div>
+        <h1>YOU ARE RARE</h1>
+        <p class="shayeri">
+            
+            "Phoolon ki bheed mein bhi alag hi chamakti ho,<br>
+            Tum 🌹 Rose ho, aur gulabon ki tarah hi mehakti ho."
+        </p>
+        <button class="btn" onclick="nextPage(3)">CONTINUE 💖</button>
+    </div>
+
+    <div class="page" id="p3">
+        <div class="floating-emoji">💎</div>
+        <h1>SPECIAL BOND</h1>
+        <p class="shayeri">
+            "Dosti toh sirf ek naam hai ✨,<br>
+            Tumhare saath guzra har pal ek inaam hai 🎁."
+        </p>
+        <button class="btn" onclick="nextPage(4)">NEXT STEP 🌸</button>
+    </div>
+
+    <div class="page" id="p4">
+        <div class="floating-emoji">🔥</div>
+        <h1>THE TRUTH</h1>
+        <div class="shayeri">
+            "Log kehte hain khoobsurti baagon mein hoti hai 🏡,<br>
+            Par humne ek haseen 🌹 Rose ko apni dosti mein paaya hai."
+        </div>
+        <button class="btn" onclick="nextPage(5)">SURPRISE 🎁</button>
+    </div>
+
+    <div class="page" id="p5">
+        <div style="font-size: 100px; animation: beat 1s infinite alternate;">👑</div>
+        <h1>FOREVER BLOOMING</h1>
+        <p class="shayeri" style="border: none; background: none;">
+            Keep Smiling, Rose! 🌹✨<br>
+            You are the most precious person! 💎💖
+        </p>
+        <div style="font-size: 60px;">💐💫🎀🍭</div>
+        <button class="btn" onclick="location.reload()" style="background: var(--bright-red); color: white; margin-top: 20px;">REPLAY 🔄</button>
+    </div>
+
+    <script>
+        function nextPage(num) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('p' + num).classList.add('active');
+
+            if(num === 5) {
+                // Intense Emoji & Petal Rain
+                setInterval(createRainEffect, 100);
+            }
+        }
+
+        function createRainEffect() {
+            const items = ['🌹', '✨', '💖', '🌸', '💎', '💫'];
+            const p = document.createElement('div');
+            p.classList.add('petal');
+            p.innerHTML = items[Math.floor(Math.random() * items.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.fontSize = (Math.random() * 25 + 20) + 'px';
+            p.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            p.style.filter = "drop-shadow(0 0 5px white)";
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
